@@ -15,5 +15,21 @@ return [
 
     'hello guys' => 'اهلا وسهلا ياشباب',
     'welcome'     => 'مرحبا',
+    'add offer'  => 'أدخال منتج جديد',
+    'offer name' =>'ألاسم',
+    'offer price' =>'السعر',
+    'offer details' =>'التفاصيل',
+     'name required'   => 'الاسم مطلوب',
+    'name unique'    => 'اسم العرض هذا موجود بالفعل',
+    'price required' => 'يجب ادخال خانه السعر',
+    'id'  =>'التسلسل',
+    'name'  =>'الاسم',
+    'price'  =>'السعر',
+    'details'  =>'التفاصيل',
+    'created_at' => 'تارخ التسجيل',
+    'Edit' => 'تعديل',
+    'edit offer' => 'تعديل المنتج',
+    'offer photo' => 'صوره المنتج',
+
 
 ];

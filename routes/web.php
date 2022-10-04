@@ -15,6 +15,13 @@
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Auth::routes(['verify' => true]);
+
+
+//facebook
+Route::get('/redirect/{service}','SocialiteController@redirect');
+
+// after login with facebook callback to my site
+Route::get('/callback/{service}'.'SocialiteController@callback');
 /*
 Route::get('/', function () {
     return view('welcome');
@@ -80,7 +87,32 @@ Route::get('','Front\UserController@showdata');
 
 */
 
+Route::get('fillable','CrudController@getOffers');
 
+
+
+//route prefix for lang translate [en | ar ] for mcamara package
+Route::group(['prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
+{
+    //Route::get('insert','CrudController@store');
+
+    //route for translate site as [offers/ar|en/create]
+    Route::group(['prefix' => 'offers'],function (){
+
+        Route::get('create','CrudController@create');
+
+        Route::post('store','CrudController@store')->name('offer.store');
+
+        Route::get('edit/{offer_id}','CrudController@edit');
+
+        Route::post('update/{offer_id}','CrudController@update')->name('offer.update');
+
+        Route::get('all-offers','CrudController@show');
+
+    });
+
+});
 
 
 

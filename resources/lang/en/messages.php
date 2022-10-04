@@ -15,5 +15,20 @@ return [
 
     'hello guys' => 'hello guys',
     'welcome'     => 'WELCOME',
+    'add offer'  => 'Add New Offer',
+    'offer name' =>'Name',
+    'offer price' =>'Price',
+    'offer details' =>'Details',
+    'name required'  => 'name is required',
+    'name unique'    => 'this offer is already exist',
+    'price required' => 'price is required',
+    'id'  =>'Id',
+    'name'  =>'Name',
+    'price'  =>'Price',
+    'details'  =>'Details',
+    'created_at' => 'Created_at',
+    'Edit'  => 'Edit',
+    'edit offer' => 'edit offer',
+    'offer photo' => 'image',
 
 ];
