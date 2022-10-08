@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Offers</title>
+        <title>Laravel</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
         <!-- Fonts -->
@@ -92,47 +92,14 @@
             </div>
         </div>
     </nav>
-    <h1 class="text-center"> Show Offers </h1>
-    @if(Session::has('error'))
-         <div class="alert alert-danger text-center"  role="alert">
-            {{Session::get('error')}}
-        </div>
-    @endif
-    @if(Session::has('delete-success'))
 
-        <div class="alert alert-danger text-center" role="alert">
-            {{Session::get('delete-success')}}
-        </div>
-    @endif
-    <div class="table-responsive">
-        <table class="main-table text-center table table-bordered">
+            <div class="content">
+                <div class="title m-b-md">
+                    Video-viewer : ({{$viewer->viewer}})
+                </div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Ps_vY2qwDFs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <tr>
-                <td scope="col">{{__('messages.id')}}</td>
-                <td scope="col">{{__('messages.name')}}</td>
-                <td scope="col">{{__('messages.price')}}</td>
-                <td scope="col">{{__('messages.details')}}</td>
-                <td scope="col">{{__('messages.offer photo')}}</td>
+            </div>
 
-            </tr>
-            @foreach($offers as $offer)
-            <tr>
-                <td>{{$offer->id}}</td>
-                <td>{{$offer->name}}</td>
-                <td>{{$offer->price}}</td>
-                <td>{{$offer->details}}</td>
-                <td>
-                    <img src=" {{asset('images/offers/'.$offer->photo)}}" width="50px" height="60px">
-                   </td>
-                <td>
-                    <a href="{{url('offers/edit/'.$offer->id)}}" class="btn btn-success">{{__('messages.Edit')}}</a>
-                    <a href="{{route('offer.delete',$offer->id)}}" class="btn btn-danger">{{__('messages.Delete')}}</a>
-
-                </td>
-
-            </tr>
-            @endforeach
-        </table>
-    </div>
     </body>
 </html>

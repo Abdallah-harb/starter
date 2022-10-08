@@ -91,7 +91,7 @@ Route::get('fillable','CrudController@getOffers');
 
 
 
-//route prefix for lang translate [en | ar ] for mcamara package
+//Start route prefix for lang translate [en | ar ] for mcamara package
 Route::group(['prefix' => LaravelLocalization::setLocale(),
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]], function()
 {
@@ -108,12 +108,35 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         Route::post('update/{offer_id}','CrudController@update')->name('offer.update');
 
+        Route::get('delete/{offer_id}','CrudController@delete')->name('offer.delete');
+
         Route::get('all-offers','CrudController@show');
 
     });
 
-});
+    //route for event and listener
 
+        Route::group(['namespace' => 'Youtub'],function (){
+
+            Route::get('show-viewer','viewerController@viewer');
+        });
+
+});
+//End route prefix for lang translate [en | ar ] for mcamara package
+
+###########################################################
+###########################################################
+################### Using Ajax ############################
+###########################################################
+###########################################################
+
+Route::group(['prefix' => 'ajax-offer'],function (){
+
+    Route::get('create','OfferController@create');
+    Route::post('store','OfferController@store')->name('ajax.store');
+
+
+});
 
 
 

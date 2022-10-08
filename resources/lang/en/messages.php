@@ -30,5 +30,8 @@ return [
     'Edit'  => 'Edit',
     'edit offer' => 'edit offer',
     'offer photo' => 'image',
+    'Delete'  => 'Delete',
+    'offer-error-delete' => 'Data Not exists',
+    'delete-success'=>'offer deleted',
 
 ];

@@ -30,6 +30,9 @@ return [
     'Edit' => 'تعديل',
     'edit offer' => 'تعديل المنتج',
     'offer photo' => 'صوره المنتج',
+    'Delete'  => 'حذف',
+    'offer-error-delete' => 'هذا العرض غير موجود',
+    'delete-success'=>'تم حذف العرض بنجاح',
 
 
 ];

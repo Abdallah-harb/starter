@@ -34,9 +34,9 @@ class CrudController extends Controller
 
     //function to store data on offers table
 
-    public function store( $request){
+    public function store(Request $request){
 
-
+/*
             //validate data before insert
         $rules =[
 
@@ -59,7 +59,7 @@ class CrudController extends Controller
                 // $validate->errors()->first();
 
                 return redirect()->back()->withErrors($validate)->withInput($request->all());
-
+*/
             //save photo to folder
             $file_extension = $request->photo->getClientOriginalExtension();
 
@@ -117,6 +117,19 @@ class CrudController extends Controller
         return redirect('offers/all-offers')->with(['success' => 'تم تحديث البيانات بنجاح']);
     }
 
+    //delete function
+    public function delete($offer_id){
+
+        //check for id  is exist to update
+        $offer = Offer::find($offer_id);
+
+        if(!$offer)
+            return redirect()->back()->with(['error' => __('messages.offer-error-delete')]);
+        //offer delete
+        $offer->delete();
+        return redirect('offers/all-offers')->with(['delete-success' => __('messages.delete-success')]);
+    }
+
     //function to show all offers
     public function show(){
 
@@ -124,6 +137,7 @@ class CrudController extends Controller
 
         return view('offers.show',compact('offers'));
     }
+
 
 
 
