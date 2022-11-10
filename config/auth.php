@@ -36,9 +36,15 @@ return [
     */
 
     'guards' => [
+            // for user and its defaults guards
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+            //new guards for admin only
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
 
         'api' => [
@@ -66,9 +72,16 @@ return [
     */
 
     'providers' => [
+                    //for guards defaults web | user
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+                //for guards admin omly
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
         // 'users' => [

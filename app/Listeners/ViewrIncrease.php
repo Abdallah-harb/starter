@@ -27,8 +27,15 @@ class ViewrIncrease
      */
     public function handle(EventViewer $event)
     {
-        //update viewer
-        $this->updateViewer($event->video);
+        if(!session()->has('videoIsVisited')){
+
+            //update viewer
+            $this->updateViewer($event->video);
+
+        }else{
+            return false;
+        }
+
     }
 
     //function to update viewer
@@ -38,6 +45,8 @@ class ViewrIncrease
         $increaseViewer-> viewer = $increaseViewer-> viewer +1;
 
         $increaseViewer->save();
+
+        session()->put('videoIsVisited',$increaseViewer->id);
 
     }
 }

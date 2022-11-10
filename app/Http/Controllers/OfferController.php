@@ -55,4 +55,20 @@ class OfferController extends Controller
 
 
     }
+
+    //function to delete
+
+    public function delete(Request $request){
+
+        return $request;
+    }
+
+    //function to show all offer using ajax
+    //function to show all offers
+    public function showall(){
+
+        $offers = Offer::get();//retrieve all columns
+
+        return view('ajaxOffer.show',compact('offers'));
+    }
 }

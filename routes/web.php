@@ -118,7 +118,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 
         Route::group(['namespace' => 'Youtub'],function (){
 
-            Route::get('show-viewer','viewerController@viewer');
+            Route::get('show-viewer','viewerController@viewer')->middleware('auth');
         });
 
 });
@@ -133,37 +133,51 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),
 Route::group(['prefix' => 'ajax-offer'],function (){
 
     Route::get('create','OfferController@create');
-    Route::post('store','OfferController@store')->name('ajax.store');
 
+    Route::post('store','@store')->name('ajax.store');
+
+    Route::post('delete','OfferController@delete')->name('ajax_delete');
+
+    Route::get('all-offers','OfferController@showall');
+
+
+});
+############## Begin Authenticate && Guard ########
+Route::group(['namespace'=>'Auth','middleware' => 'CheckAge'],function (){
+
+    Route::get('adults','CustomAuth@adults')->name('adults');
+});
+Route::group(['namespace'=>'Auth'],function (){
+
+    Route::get('site','CustomAuth@site')->middleware('auth:web')->name('site');
+    Route::get('admin','CustomAuth@admin')->middleware('auth:admin')->name('admin');
+    Route::get('admin/login','CustomAuth@adminLogin')->name('admin.login');
+    Route::post('admin/checklogin','CustomAuth@checkAdminlogin')->name('admin_check');
+
+});
+
+############## End Authenticate && Guard ##########
+
+############# start relations ####################
+Route::group(['namespace'=> 'Relations'],function (){
+                ################## one - to - one ############
+    Route::get('has-one','relationController@hasOnerelation');
+    Route::get('has-one-reverse','relationController@hasOneReverserelation');
+    Route::get('user-has-phone','relationController@userHasPhone');
+    Route::get('user-not-has-phone','relationController@userNotHasPhone');
+                ############### one - to - many ##############
+    Route::get('hospital-has-many','relationController@getHospitalDoctor');
+    Route::get('doctors-has-one-hospital','relationController@doctorsgethospital');
+    Route::get('hospitals','relationController@hospitals');
+    Route::get('doctors/{hospital_id}','relationController@doctors')->name('hospital.doctors');
+    Route::get('hospital-delete/{hospital_delete}','relationController@hospitaldelete')->name('hospital.delete');
 
 });
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+############# End relations   ####################
 
 
 Auth::routes();
@@ -173,3 +187,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
